@@ -1,0 +1,30 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Add Flight{% endblock %}
+{% block style_add %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <form method="POST" class="form-group mt-4" style="max-width: 255px;">
+        {% csrf_token %}
+        <p>Destination of flight: {{flight}}</p>
+        {{form.as_p}}
+        {{form.errors}}
+        <input class="form-control btn btn-primary" type="submit" name="Submit">
+    </form>
+</div>
+
+
+{% block script %}
+<script>
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+</script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+{% endblock %}
+<!-- Menu toggle script -->
+
+{% endblock %}

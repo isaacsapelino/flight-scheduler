@@ -1,0 +1,45 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Add Flights{% endblock %}
+{% block content %}
+<h2 class='mt-4 ml-2'>Add Flights</h2>
+<div class="container-fluid">
+    <form method="POST" action="addflights" class="mt-4" enctype="multipart/form-data">
+    	{% csrf_token %}
+    	<div class='input-group mb-3' style="max-width: 255px;">
+    		<span class='input-group-text'><i class="fas fa-plane-departure"></i></span>
+    		{{form.name}}
+    	</div>
+    	<div class='input-group mb-3'>
+    		<span class='input-group-text'>Description: </i></span>
+    		{{form.desc}} 		
+    	</div>
+    	<div class='input-group mb-3' style="max-width: 255px;">
+    		<span class='input-group-text'><i class="fas fa-address-card"></i></span>	
+    		{{form.dest}}	
+    	</div>
+    	<div class='input-group mb-3' >
+    		<span class='input-group-text'><i class="fas fa-images"></i></span>	
+    		{{form.imageFile}}
+    	</div>
+    	<div class='input-group mb-3' style="max-width: 255px;">
+    		<span class='input-group-text'><i class="fas fa-money-bill-wave"></i></span>	
+    		{{form.price}}	
+    	</div>
+
+    	<button type="submit" class="btn btn-primary">Submit Details</button>
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+    </form>
+</div>
+<script type="text/javascript">
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Name of Destination';
+    form_fields[2].placeholder = 'Destination ';
+    var text_area = document.getElementsByTagName('textarea')
+    text_area[1].placeholder = 'Description';
+</script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card_reg">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="{% static 'img/logo.png' %}" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <h2 class="text-center pb-3" style="color: white; text-decoration: underline;">Register</h2> 
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{form.username}}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                        </div>
+                        {{form.email}}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password1}}
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{form.password2}}
+                    </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                 <button type="submit" name="button" class="btn login_btn">Register Account</button>
+               </div>
+                </form>
+            </div>       
+            {{form.errors}}       
+            <div class="mt-2">
+                <div class="d-flex justify-content-center links">
+                    Already have an account? <a href="{% url 'loginPage' %}" class="ml-2">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'username';
+    form_fields[2].placeholder = 'email address';
+    form_fields[3].placeholder = 'enter password';
+    form_fields[4].placeholder = 'confirm password';
+
+    for(var field in form_fields) {
+        form_fields[field].className += ' form-control'
+    }
+</script>
+{% endblock %}

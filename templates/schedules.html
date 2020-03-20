@@ -1,0 +1,37 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Schedules{% endblock %}
+{% block content %}
+<div class="container-fluid scroll-group">
+	<h2 class="mt-4">Current plans you have: </h2>
+	{% if sched.exists %}
+    <div class="row flex-nowrap mt-4">
+		{% for object in sched %}
+			{% for objects in object.items.all %}
+            <div class="col-sm-3 col-md-3">
+                <div class="card shadow card-block p-2 mb-5 bg-white rounded" style="width: 18rem;">
+                <div class="card-container">
+                    <img class="card-img-top" style="min-height: 169px; max-height: 169px;" src="{{objects.imageFile.url}}" alt={{objects.name}}>
+                    <div class="card-body">
+                        <h5 class="card-title">{{objects.name}}</h5>
+                            {% if object_desc.desc != '' %}
+                                <p class="card-text">{{object.desc}}</p>
+                            {% else %}
+                                <p>No description.</p>
+                            {% endif %}
+                        <div class="card-container" style="white-space: nowrap;">
+                        <a href="{% url 'details' object.id %}" class="badge badge-primary p-2 card-link mr-4" id="dineIn">View details</a>
+                        <a href="{% url 'del_flight_plan' object.id %}" class="badge badge-danger ml-4 p-2 card-link" id="dineIn">Remove Plan</a> 
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+            {% endfor %}
+		{% endfor %}
+        {% else %}
+            <h3 class="mt-4" style="color: red;">You have no scheduled activity right at this moment.</h3>
+	{% endif %}
+</div>
+{% endblock %}

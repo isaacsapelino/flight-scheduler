@@ -1,0 +1,49 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mt-4">Settings</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p>Change your personal information: </p>
+        <div class="input-group mb-3" style="max-width: 250px;" >
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.first_name}}
+        </div>
+        <div class="input-group mb-3" style="max-width: 250px;">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+            </div>
+            {{form.last_name}}
+        </div>
+        <div class="input-group mb-3" style="max-width: 250px;">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="far fa-envelope"></i></span>
+            </div>
+            {{form.email}}
+        </div>    
+        <div class="d-flex">
+            <button type="submit" name="button" class="btn btn-primary">Update Profile</button>            
+        </div>          
+    </form>
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
+</div>
+
+<script type="text/javascript">
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'first name';
+    form_fields[2].placeholder = 'last name';
+    form_fields[3].placeholder = 'email address';
+    for(var field in form_fields) {
+        form_fields[field].className += 'form-control'
+    }
+</script>
+
+{% endblock %}

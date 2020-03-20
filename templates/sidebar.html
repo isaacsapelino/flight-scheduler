@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Welcome, {% if request.user.first_name %}
+                                            {{request.user.first_name}}
+                                            {% else %}
+                                            {{request.user}}
+                                            {% endif %}
+    </div>
+    <div class="list-group list-group-flush">
+      <a href="{% url 'flights' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-plane-departure"></i>  Check for available flights</a>
+    </div>
+    <div id="list-group-bottom" class="list-group list-group-flush">
+      <a href="{% url 'schedules' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-calendar-alt"></i>  Your schedules</a>
+      <a href="{% url 'profile' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i>  User Profile</a>
+      <a href="{% url 'settings' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-cogs"></i>  Settings</a>
+      <a href="{% url 'logout' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+    </div>
+</div>
